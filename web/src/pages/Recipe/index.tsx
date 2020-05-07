@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FiChevronLeft } from 'react-icons/fi';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import { Recipe as RecipeProps } from '../Dashboard';
 import api from '../../services/api';
@@ -16,7 +17,9 @@ interface RecipeParams {
 
 const Recipe: React.FC = () => {
   const { params } = useRouteMatch<RecipeParams>();
+
   const [recipe, setRecipe] = useState<RecipeProps>({} as RecipeProps);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     async function loadData(): Promise<void> {
@@ -45,6 +48,19 @@ const Recipe: React.FC = () => {
           <h1>{recipe.title}</h1>
 
           <p>{recipe.details}</p>
+          <div className="footer">
+            <button
+              type="button"
+              onClick={() => {
+                setIsLiked(!isLiked);
+              }}
+            >
+              {(isLiked && <AiFillHeart size={20} />) || (
+                <AiOutlineHeart size={20} />
+              )}
+              You like ?
+            </button>
+          </div>
         </div>
       </RecipeContent>
 

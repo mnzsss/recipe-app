@@ -51,4 +51,27 @@ export const RecipeContent = styled.div`
       margin-bottom: 20px;
     }
   }
+
+  .footer {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+    button {
+      background: transparent;
+      border: 0;
+      color: #ea687e;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      & + button {
+        margin-left: 30px;
+      }
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
 `;
