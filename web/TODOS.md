@@ -16,34 +16,23 @@ that will make them easy to follow.
 ## User Stories
 
 - [x] User can see a list of recipe titles
-- [ ] User can click a recipe title to display a recipe card containing the
+- [x] User can click a recipe title to display a recipe card containing the
       recipe title, meal type (breakfast, lunch, supper, or snack), number of people
       it serves, its difficulty level (beginner, intermediate, advanced), the list
       of ingredients (including their amounts), and the preparation steps.
-- [ ] User click a new recipe title to replace the current card with a new
+- [x] User click a new recipe title to replace the current card with a new
       recipe.
 
 ## Bonus features
 
-- [ ] User can see a photo showing what the item looks like after it has
+- [x] User can see a photo showing what the item looks like after it has
       been prepared.
 - [ ] User can search for a recipe not in the list of recipe titles by
       entering the meal name into a search box and clicking a 'Search' button. Any
       open source recipe API may be used as the source for recipes (see The MealDB
       below).
 - [ ] User can see a list of recipes matching the search terms
-- [ ] User can click the name of the recipe to display its recipe card.
+- [x] User can click the name of the recipe to display its recipe card.
 - [ ] User can see a warning message if no matching recipe was found.
 - [ ] User can click a 'Save' button on the cards for recipes located through
       the API to save a copy to this apps recipe file or database.
-
-## Useful links and resources
-
-- [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
-- [Axios](https://www.npmjs.com/package/axios)
-- [The MealDB API](https://www.themealdb.com/api.php)
-
-## Example projects
-
-- [Recipe Box - a Free Code Camp Project (FCC)](https://codepen.io/eddyerburgh/pen/xVeJvB)
-- [React Recipe Box](https://codepen.io/inkblotty/pen/oxWRme)
