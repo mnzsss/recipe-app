@@ -12,9 +12,9 @@ const Header: React.FC = () => {
         <img src={logo} alt="FoodCourt" />
       </Link>
 
-      <a href="#!" className="button">
+      <Link to="/recipe/new" className="button">
         send a recipe
-      </a>
+      </Link>
     </Container>
   );
 };
