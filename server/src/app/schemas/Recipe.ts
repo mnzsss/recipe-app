@@ -1,33 +1,40 @@
 import { model, Schema, Document } from 'mongoose';
 
 interface IRecipe extends Document {
-  title: string;
-  meal: string;
-  difficulty: string;
-  details: string;
   image: string;
+  title: string;
+  difficulty: string;
+  description: string;
+  ingredients: string[];
+  prepare_mode: string;
 }
 
 const RecipeSchema = new Schema(
   {
+    image: {
+      type: String,
+    },
     title: {
       type: String,
       required: true,
     },
-    meal: {
-      type: String,
-      required: true,
-    },
     difficulty: {
+      type: Number,
+      required: true,
+      max: 10,
+      min: 1,
+    },
+    description: {
       type: String,
       required: true,
     },
-    details: {
-      type: String,
+    ingredients: {
+      type: [String],
       required: true,
     },
-    image: {
+    prepare_mode: {
       type: String,
+      required: true,
     },
   },
   {

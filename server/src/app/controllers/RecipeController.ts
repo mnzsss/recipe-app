@@ -14,8 +14,9 @@ class RecipeController {
         id: recipe.id,
         title: recipe.title,
         difficulty: recipe.difficulty,
-        meal: recipe.meal,
-        details: recipe.details,
+        description: recipe.description,
+        ingredients: recipe.ingredients,
+        prepare_mode: recipe.prepare_mode,
         image_url: `http://localhost:3333/files/${recipe.image}`,
       };
     });
@@ -36,8 +37,9 @@ class RecipeController {
       id: recipe.id,
       title: recipe.title,
       difficulty: recipe.difficulty,
-      meal: recipe.meal,
-      details: recipe.details,
+      description: recipe.description,
+      ingredients: recipe.ingredients,
+      prepare_mode: recipe.prepare_mode,
       image_url: `http://localhost:3333/files/${recipe.image}`,
     };
 
@@ -46,13 +48,24 @@ class RecipeController {
 
   async create(req: Request, res: Response) {
     const image = req.file.filename;
-    const { title, meal, difficulty, details } = req.body;
+    const {
+      title,
+      description,
+      difficulty,
+      prepare_mode,
+      ingredients,
+    } = req.body;
+
+    const parsedIngredients = String(ingredients)
+      .split(',')
+      .map(ingredient => ingredient.trim());
 
     const recipe = await Recipe.create({
       title,
-      meal,
+      description,
       difficulty,
-      details,
+      prepare_mode,
+      ingredients: parsedIngredients,
       image,
     });
 
@@ -60,8 +73,9 @@ class RecipeController {
       id: recipe.id,
       title: recipe.title,
       difficulty: recipe.difficulty,
-      meal: recipe.meal,
-      details: recipe.details,
+      description: recipe.description,
+      ingredients: recipe.ingredients,
+      prepare_mode: recipe.prepare_mode,
       image_url: `http://localhost:3333/files/${recipe.image}`,
     };
 
@@ -78,7 +92,13 @@ class RecipeController {
       return res.status(400).json({ error: 'Recipe not found.' });
     }
 
-    await recipe.update(req.body);
+    const { ingredients } = req.body;
+
+    const parsedIngredients = String(ingredients)
+      .split(',')
+      .map(ingredient => ingredient.trim());
+
+    await recipe.update({ ...req.body, ingredients: parsedIngredients });
 
     if (image) {
       const uploadFolder = path.resolve(__dirname, '..', '..', '..', 'uploads');
@@ -95,16 +115,7 @@ class RecipeController {
       );
     }
 
-    const serializedRecipe = {
-      id: recipe.id,
-      title: recipe.title,
-      difficulty: recipe.difficulty,
-      meal: recipe.meal,
-      details: recipe.details,
-      image_url: `http://localhost:3333/files/${recipe.image}`,
-    };
-
-    return res.json(serializedRecipe);
+    return res.send();
   }
 
   async delete(req: Request, res: Response) {
