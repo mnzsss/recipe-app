@@ -63,7 +63,7 @@ class RecipeController {
     const recipe = await Recipe.create({
       title,
       description,
-      difficulty,
+      difficulty: Number(difficulty),
       prepare_mode,
       ingredients: parsedIngredients,
       image,
@@ -92,13 +92,21 @@ class RecipeController {
       return res.status(400).json({ error: 'Recipe not found.' });
     }
 
-    const { ingredients } = req.body;
+    const { ingredients, difficulty } = req.body;
 
-    const parsedIngredients = String(ingredients)
-      .split(',')
-      .map(ingredient => ingredient.trim());
+    const parsedIngredients = ingredients
+      ? String(ingredients)
+          .split(',')
+          .map(ingredient => ingredient.trim())
+      : recipe.ingredients;
 
-    await recipe.update({ ...req.body, ingredients: parsedIngredients });
+    const data = {
+      ...req.body,
+      ingredients: parsedIngredients,
+      difficulty: Number(difficulty) || recipe.difficulty,
+    };
+
+    await recipe.update(data);
 
     if (image) {
       const uploadFolder = path.resolve(__dirname, '..', '..', '..', 'uploads');

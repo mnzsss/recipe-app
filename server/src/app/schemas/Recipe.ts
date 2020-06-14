@@ -3,7 +3,7 @@ import { model, Schema, Document } from 'mongoose';
 interface IRecipe extends Document {
   image: string;
   title: string;
-  difficulty: string;
+  difficulty: number;
   description: string;
   ingredients: string[];
   prepare_mode: string;

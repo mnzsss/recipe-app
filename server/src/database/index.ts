@@ -1,4 +1,8 @@
+import dotenv from 'dotenv';
+
 import { connect } from 'mongoose';
+
+dotenv.config();
 
 class Database {
   constructor() {
@@ -6,14 +10,11 @@ class Database {
   }
 
   mongo() {
-    connect(
-      'mongodb+srv://learn:opensourceapps237@opensourceapps-lql4e.mongodb.net/recipeapp?retryWrites=true&w=majority',
-      {
-        useNewUrlParser: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-      },
-    );
+    connect(`${process.env.MONGO_URL}`, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    });
   }
 }
 
