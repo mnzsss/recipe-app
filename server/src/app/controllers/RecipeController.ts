@@ -83,7 +83,6 @@ class RecipeController {
   }
 
   async update(req: Request, res: Response) {
-    const image = req.file.filename;
     const { id } = req.params;
 
     const recipe = await Recipe.findById(id);
@@ -108,7 +107,7 @@ class RecipeController {
 
     await recipe.update(data);
 
-    if (image) {
+    if (req.file !== undefined) {
       const uploadFolder = path.resolve(__dirname, '..', '..', '..', 'uploads');
 
       await fs.promises.unlink(`${uploadFolder}/${recipe.image}`);
@@ -117,7 +116,7 @@ class RecipeController {
         { _id: id },
         {
           $set: {
-            image,
+            image: req.file.filename,
           },
         },
       );
