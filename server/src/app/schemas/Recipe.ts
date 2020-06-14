@@ -1,4 +1,12 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema, Document } from 'mongoose';
+
+interface IRecipe extends Document {
+  title: string;
+  meal: string;
+  difficulty: string;
+  details: string;
+  image: string;
+}
 
 const RecipeSchema = new Schema(
   {
@@ -24,7 +32,7 @@ const RecipeSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export default model('Recipe', RecipeSchema);
+export default model<IRecipe>('Recipe', RecipeSchema);

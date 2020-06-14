@@ -7,7 +7,7 @@ export default {
     destination: resolve(__dirname, '..', '..', 'uploads'),
     filename: (req, file, cb) => {
       crypto.randomBytes(16, (err, res) => {
-        if (err) return cb(err);
+        if (err) return cb(err, __filename);
 
         return cb(null, res.toString('hex') + extname(file.originalname));
       });

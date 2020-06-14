@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import { connect } from 'mongoose';
 
 class Database {
   constructor() {
@@ -6,13 +6,13 @@ class Database {
   }
 
   mongo() {
-    this.mongoConnection = mongoose.connect(
-      'mongodb://localhost:27017/recipe-app',
+    connect(
+      'mongodb+srv://learn:opensourceapps237@opensourceapps-lql4e.mongodb.net/recipeapp?retryWrites=true&w=majority',
       {
         useNewUrlParser: true,
         useFindAndModify: false,
         useUnifiedTopology: true,
-      }
+      },
     );
   }
 }
