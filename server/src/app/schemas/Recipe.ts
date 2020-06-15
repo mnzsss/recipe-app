@@ -3,7 +3,7 @@ import { model, Schema, Document } from 'mongoose';
 interface IRecipe extends Document {
   image: string;
   title: string;
-  difficulty: number;
+  difficulty: string;
   description: string;
   ingredients: string[];
   prepare_mode: string;
@@ -19,10 +19,8 @@ const RecipeSchema = new Schema(
       required: true,
     },
     difficulty: {
-      type: Number,
+      type: String,
       required: true,
-      max: 10,
-      min: 1,
     },
     description: {
       type: String,

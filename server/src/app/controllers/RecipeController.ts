@@ -63,7 +63,7 @@ class RecipeController {
     const recipe = await Recipe.create({
       title,
       description,
-      difficulty: Number(difficulty),
+      difficulty,
       prepare_mode,
       ingredients: parsedIngredients,
       image,
@@ -91,7 +91,7 @@ class RecipeController {
       return res.status(400).json({ error: 'Recipe not found.' });
     }
 
-    const { ingredients, difficulty } = req.body;
+    const { ingredients } = req.body;
 
     const parsedIngredients = ingredients
       ? String(ingredients)
@@ -102,7 +102,6 @@ class RecipeController {
     const data = {
       ...req.body,
       ingredients: parsedIngredients,
-      difficulty: Number(difficulty) || recipe.difficulty,
     };
 
     await recipe.update(data);
