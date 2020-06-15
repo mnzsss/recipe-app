@@ -42,6 +42,13 @@ export const DropContainer = styled.div.attrs({
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    img {
+      width: auto;
+      max-height: 100%;
+    }
 
     span {
       font-size: 26px;

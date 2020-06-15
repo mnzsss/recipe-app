@@ -40,14 +40,14 @@ const Recipe: React.FC = () => {
         back
       </Link>
       <RecipeContent>
-        <img src={recipe.image} alt={recipe.title} />
+        <img src={recipe.image_url} alt={recipe.title} />
 
         <div>
           <span>{recipe.difficulty}</span>
 
           <h1>{recipe.title}</h1>
 
-          <p>{recipe.details}</p>
+          <p>{recipe.description}</p>
           <div className="footer">
             <button
               type="button"

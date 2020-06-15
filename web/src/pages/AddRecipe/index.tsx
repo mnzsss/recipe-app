@@ -5,6 +5,7 @@ import filesize from 'filesize';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { toast } from 'react-toastify';
+import { FiTrash2, FiPlusSquare } from 'react-icons/fi';
 
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -23,54 +24,60 @@ interface FileProps {
   readableSize: string;
 }
 
-interface SignInFormData {
-  email: string;
-  password: string;
+interface AddRecipeData {
+  image: string;
+  title: string;
+  description: string;
+  prepare_mode: string;
+  [key: string]: string;
 }
 
 const AddRecipe: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
+  const [difficulty, setDifficulty] = useState('Easy');
+  const [ingredientsInputs, setIngredients] = useState<string[]>(['']);
 
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
 
   const handleSubmit = useCallback(
-    async (data: SignInFormData) => {
+    async (data: AddRecipeData) => {
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
           title: Yup.string().required('Your recipe need a title'),
-          meal: Yup.string().required('Whats meal is this ?'),
-          difficulty: Yup.string().required(
-            'Why difficulty to prepare recipe ?',
-          ),
-          details: Yup.string().required('how do you cook your recipe?'),
+          description: Yup.string().required(),
+          prepare_mode: Yup.string().required('how do you cook your recipe?'),
         });
 
         await schema.validate(data, { abortEarly: false });
 
-        const fileData = new FormData();
+        const ingredientsKeys = Object.getOwnPropertyNames(data).filter(key =>
+          key.includes('ingredient'),
+        );
+
+        const ingredients = ingredientsKeys.map(key => data[key]).join();
+
+        const recipeData = new FormData();
 
         if (!uploadedFiles.length) {
           throw new Error('No Image Found');
         }
 
-        fileData.append('file', uploadedFiles[0].file, uploadedFiles[0].name);
+        recipeData.append('file', uploadedFiles[0].file, uploadedFiles[0].name);
+        recipeData.append('title', data.title);
+        recipeData.append('difficulty', difficulty);
+        recipeData.append('description', data.description);
+        recipeData.append('ingredients', ingredients);
+        recipeData.append('prepare_mode', data.prepare_mode);
 
-        const { data: file } = await api.post('/files', fileData);
-
-        const { data: recipe } = await api.post('/recipes', data);
-
-        await api.put('/recipes', {
-          recipe_id: recipe._id,
-          image_id: file._id,
-        });
+        await api.post('/recipes', recipeData);
 
         history.push('/');
 
-        toast('🦄 Wow so easy!', {
+        toast('🍝 Wow so easy!', {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -97,7 +104,7 @@ const AddRecipe: React.FC = () => {
         });
       }
     },
-    [history, uploadedFiles],
+    [difficulty, history, uploadedFiles],
   );
 
   const handleUpload = useCallback((files: File[]): void => {
@@ -110,12 +117,22 @@ const AddRecipe: React.FC = () => {
     setUploadedFiles(uploadFiles);
   }, []);
 
+  const handleAddIngredient = useCallback(() => {
+    setIngredients(old => [...old, '']);
+  }, []);
+
+  const handleRemoveIngredient = useCallback(idx => {
+    setIngredients(old => old.filter((s, sidx) => idx !== sidx));
+  }, []);
+
   return (
     <Container>
       <Header />
 
       <Content>
         <ImportFileContainer>
+          <h2>Add a beatiful image</h2>
+
           <Upload onUpload={handleUpload} />
           {!!uploadedFiles.length && <span>Arquivo Enviado com Sucesso</span>}
 
@@ -125,13 +142,78 @@ const AddRecipe: React.FC = () => {
         </ImportFileContainer>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="title" placeholder="Insert title recipe" />
+          <h2>Add your special recipe</h2>
 
-          <Input name="meal" placeholder="Info Meal type" />
+          <Input name="title" placeholder="Recipe title" />
 
-          <Input name="difficulty" placeholder="Info Difficulty" />
+          <div className="difficulty">
+            <h3>What is the difficulty?</h3>
 
-          <Textarea rows={5} name="details" placeholder="Info Recipe Details" />
+            <div>
+              <button
+                type="button"
+                className={difficulty === 'Easy' ? 'button selected' : 'button'}
+                onClick={() => setDifficulty('Easy')}
+              >
+                Easy
+              </button>
+
+              <button
+                type="button"
+                className={
+                  difficulty === 'Medium' ? 'button selected' : 'button'
+                }
+                onClick={() => setDifficulty('Medium')}
+              >
+                Medium
+              </button>
+
+              <button
+                type="button"
+                className={difficulty === 'Hard' ? 'button selected' : 'button'}
+                onClick={() => setDifficulty('Hard')}
+              >
+                Hard
+              </button>
+            </div>
+          </div>
+
+          <Textarea
+            rows={4}
+            name="description"
+            placeholder="Talk a little about the recipe"
+          />
+
+          <div className="ingredients">
+            <h3>List of Ingredients</h3>
+
+            {ingredientsInputs.map((ingredient, idx) => (
+              <div className="ingredient" key={`${idx + 1}`}>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveIngredient(idx)}
+                  className="small"
+                >
+                  <FiTrash2 color="#39008F" size={20} />
+                </button>
+                <Input
+                  name={`${idx + 1}_ingredient`}
+                  placeholder="new ingredient"
+                />
+              </div>
+            ))}
+
+            <button type="button" onClick={handleAddIngredient}>
+              <FiPlusSquare color="#39008F" size={20} />
+              Add new Ingredient
+            </button>
+          </div>
+
+          <Textarea
+            rows={4}
+            name="prepare_mode"
+            placeholder="How is your recipe prepared?"
+          />
 
           <button type="submit" className="button">
             save and share

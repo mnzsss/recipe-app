@@ -12,38 +12,27 @@ import Footer from '../../components/Footer';
 import { Container, Main, Recipes } from './styles';
 
 export interface Recipe {
-  _id: string;
+  id: string;
   title: string;
-  meal: string;
-  difficulty: string;
-  details: string;
-  image: string;
+  difficulty: number;
+  description: string;
+  ingredients: string[];
+  prepare_mode: string;
+  image_url: string;
 }
 
 const Dashboard: React.FC = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>(() => {
-    const recipesLocal = localStorage.getItem('@FoodCourt:Recipes');
-
-    if (recipesLocal) {
-      return JSON.parse(recipesLocal);
-    }
-
-    return [] as Recipe[];
-  });
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
     async function loadData(): Promise<void> {
       const response = await api.get('recipes');
-
-      localStorage.setItem('@FoodCourt:Recipes', JSON.stringify(response.data));
 
       setRecipes(response.data);
     }
 
     loadData();
   }, []);
-
-  console.log(recipes);
 
   return (
     <Container>
@@ -74,18 +63,16 @@ const Dashboard: React.FC = () => {
 
       <Recipes id="recipes">
         {recipes.map(recipe => (
-          <div key={recipe._id}>
-            <img src={recipe.image} alt={recipe.title} />
-
-            <span>{recipe.difficulty}</span>
+          <div key={recipe.id}>
+            <img src={recipe.image_url} alt={recipe.title} />
 
             <h2>{recipe.title}</h2>
 
             <p>
-              <Truncate lines={4}>{recipe.details}</Truncate>
+              <Truncate lines={4}>{recipe.description}</Truncate>
             </p>
 
-            <Link to={`/recipe/${recipe._id}`} className="button">
+            <Link to={`/recipe/${recipe.id}`} className="button">
               show more
             </Link>
           </div>
