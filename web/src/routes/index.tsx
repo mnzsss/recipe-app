@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import Recipe from '../pages/Recipe';
 import AddRecipe from '../pages/AddRecipe';
+import LikedRecipes from '../pages/LikedRecipes';
 
 const Routes: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Routes: React.FC = () => {
 
       <Route path="/recipe/new" exact component={AddRecipe} />
       <Route path="/recipe/:recipe+" component={Recipe} />
+      <Route path="/liked" component={LikedRecipes} />
     </Switch>
   );
 };

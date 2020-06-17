@@ -10,4 +10,32 @@ export const Container = styled.div`
   img {
     cursor: pointer;
   }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    a + a {
+      margin-left: 30px;
+    }
+
+    .link {
+      background: transparent;
+      border: 0;
+      color: #ea687e;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.4s;
+
+      svg {
+        margin-right: 5px;
+      }
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
 `;

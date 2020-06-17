@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiFillHeart } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
@@ -13,6 +14,11 @@ const Header: React.FC = () => {
       </Link>
 
       <div>
+        <Link to="/liked" className="link">
+          <AiFillHeart size={20} />
+          Your liked recipes
+        </Link>
+
         <Link to="/recipe/new" className="button">
           send a recipe
         </Link>

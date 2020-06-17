@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FiChevronLeft } from 'react-icons/fi';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
@@ -25,11 +25,39 @@ const Recipe: React.FC = () => {
     async function loadData(): Promise<void> {
       const rcp = await api.get(`recipes/${params.recipe}`);
 
+      const storagedLike = localStorage.getItem('@FoodCourt:Liked');
+
+      if (storagedLike) {
+        const likes: [] = JSON.parse(storagedLike);
+
+        const liked = likes.filter((like: any) => like.id === params.recipe);
+
+        if (liked[0]) {
+          setIsLiked(true);
+        }
+      }
+
       setRecipe(rcp.data);
     }
 
     loadData();
   }, [params.recipe]);
+
+  const handleLikeRecipe = useCallback(() => {
+    setIsLiked(old => !old);
+
+    let rcps = [];
+
+    const storagedRecipes = localStorage.getItem('@FoodCourt:Liked');
+
+    if (storagedRecipes) {
+      rcps = JSON.parse(storagedRecipes);
+    }
+
+    rcps.push(recipe);
+
+    localStorage.setItem('@FoodCourt:Liked', JSON.stringify(rcps));
+  }, [recipe]);
 
   return (
     <Container>
@@ -71,12 +99,7 @@ const Recipe: React.FC = () => {
             <p>{recipe.prepare_mode}</p>
 
             <div className="footer">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsLiked(!isLiked);
-                }}
-              >
+              <button type="button" onClick={handleLikeRecipe}>
                 {(isLiked && <AiFillHeart size={20} />) || (
                   <AiOutlineHeart size={20} />
                 )}
