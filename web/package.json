@@ -13,6 +13,7 @@
     "@unform/core": "^2.1.0",
     "@unform/web": "^2.1.0",
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "filesize": "^6.1.0",
     "polished": "^3.6.2",
     "react": "^16.13.1",
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/react-beautiful-dnd": "^13.0.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-truncate": "^2.3.3",
