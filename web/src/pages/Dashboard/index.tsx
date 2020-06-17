@@ -43,10 +43,9 @@ const Dashboard: React.FC = () => {
           <h1>Biggest list of the best Recipes</h1>
 
           <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum.
+            Find and share everyday cooking inspiration on Allrecipes. Discover
+            recipes, cooks, videos, and how-tos based on the food you love and
+            the friends you follow.
           </p>
 
           <a href="#recipes" className="button">
