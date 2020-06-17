@@ -24,20 +24,17 @@ The objective of the Recipe app is to help the user manage recipes in a way
 <p align="center">
    <img alt="Demo" src="./images/dashboard.png" />
 </p>
+<p align="center">
+<img alt="Demo" src="./images/recipe.png" />
+</p>
 
-<table>
- <tr>
- <td >
-    <img alt="Demo" src="./images/recipe.png" />
- </td>
- <td >
-    <img alt="Demo" src="./images/add-recipe.png" />
- </td>
- <td >
-    <img alt="Demo" src="./images/liked-recipes.png" />
- </td>
- </tr>
-</table>
+<p align="center">
+<img alt="Demo" src="./images/add-recipe.png" />
+</p>
+
+<p align="center">
+<img alt="Demo" src="./images/liked-recipes.png" />
+</p>
 
 ## 🏠 Let's usage
 
@@ -79,6 +76,35 @@ cd ../web
 # Run Web Application
 yarn start
 ```
+
+### 🤔 Como contribuir?
+
+**Fork this Repository**
+
+```bash
+# Use github CLI:
+$ gh repo fork danilods/gobarber-admin
+
+# If you don't have a GitHub CLI, use the website for this.
+```
+
+**Follow the steps below**
+
+```bash
+# Clone your fork
+$ git clone your-fork-url && cd gobarber-admin
+
+# Create branch
+$ git checkout -b feat/my-feature
+
+# Create commit
+$ git commit -m 'feat: My new feature'
+
+# Send code to repository
+$ git push origin my-feature
+```
+
+After your pull request is merged, you can delete your branch.
 
 ## Author
 
