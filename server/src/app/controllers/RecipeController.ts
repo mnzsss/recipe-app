@@ -17,7 +17,7 @@ class RecipeController {
         description: recipe.description,
         ingredients: recipe.ingredients,
         prepare_mode: recipe.prepare_mode,
-        image_url: `http://localhost:3333/files/${recipe.image}`,
+        image_url: `${process.env.APP_URL}/files/${recipe.image}`,
       };
     });
 
@@ -40,7 +40,7 @@ class RecipeController {
       description: recipe.description,
       ingredients: recipe.ingredients,
       prepare_mode: recipe.prepare_mode,
-      image_url: `http://localhost:3333/files/${recipe.image}`,
+      image_url: `${process.env.APP_URL}/files/${recipe.image}`,
     };
 
     return res.json(serializedRecipe);
@@ -76,7 +76,7 @@ class RecipeController {
       description: recipe.description,
       ingredients: recipe.ingredients,
       prepare_mode: recipe.prepare_mode,
-      image_url: `http://localhost:3333/files/${recipe.image}`,
+      image_url: `${process.env.APP_URL}/files/${recipe.image}`,
     };
 
     return res.json(serializedRecipe);
