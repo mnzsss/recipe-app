@@ -57,7 +57,7 @@ class RecipeController {
     } = req.body;
 
     const parsedIngredients = String(ingredients)
-      .split(',')
+      .split('/')
       .map(ingredient => ingredient.trim());
 
     const recipe = await Recipe.create({
