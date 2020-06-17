@@ -83,7 +83,7 @@ yarn start
 
 ```bash
 # Use github CLI:
-$ gh repo fork danilods/gobarber-admin
+$ gh repo fork mnzsss/recipe-app
 
 # If you don't have a GitHub CLI, use the website for this.
 ```
