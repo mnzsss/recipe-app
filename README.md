@@ -92,7 +92,7 @@ $ gh repo fork mnzsss/recipe-app
 
 ```bash
 # Clone your fork
-$ git clone your-fork-url && cd gobarber-admin
+$ git clone your-fork-url && cd recipe-app
 
 # Create branch
 $ git checkout -b feat/my-feature
