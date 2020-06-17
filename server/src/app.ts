@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+
 import express, { Express, Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 
@@ -7,6 +9,8 @@ import cors from 'cors';
 import routes from './routes';
 
 import './database';
+
+dotenv.config();
 
 class App {
   public server: Express;

@@ -47,7 +47,8 @@ class RecipeController {
   }
 
   async create(req: Request, res: Response) {
-    const image = req.file.filename;
+    const image = req.file.key;
+
     const {
       title,
       description,
@@ -76,7 +77,10 @@ class RecipeController {
       description: recipe.description,
       ingredients: recipe.ingredients,
       prepare_mode: recipe.prepare_mode,
-      image_url: `${process.env.APP_URL}files/${recipe.image}`,
+      image_url:
+        process.env.STORAGE_TYPE === 'local'
+          ? `${process.env.APP_URL}files/${recipe.image}`
+          : req.file.location,
     };
 
     return res.json(serializedRecipe);
@@ -115,7 +119,7 @@ class RecipeController {
         { _id: id },
         {
           $set: {
-            image: req.file.filename,
+            image: req.file.key,
           },
         },
       );
