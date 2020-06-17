@@ -77,7 +77,7 @@ cd ../web
 yarn start
 ```
 
-### 🤔 Como contribuir?
+### 🤔 How to contribute?
 
 **Fork this Repository**
 
