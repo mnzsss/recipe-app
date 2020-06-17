@@ -10,20 +10,18 @@ export const Container = styled.div`
 export const Main = styled.main`
   margin-top: 50px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
+  justify-items: flex-end;
 
   div {
     h1 {
-      font-size: 70px;
+      font-size: 64px;
       font-weight: 600;
+      line-height: 130%;
       margin-bottom: 30px;
-
-      span {
-        font-size: 30px;
-        font-weight: 500;
-      }
     }
 
     p {
@@ -31,10 +29,13 @@ export const Main = styled.main`
     }
 
     .button {
-      background-color: #39008f;
+      border: 2px solid #39008f;
+      background: transparent;
+      color: #39008f;
 
       &:hover {
         background-color: ${shade(0.3, '#39008F')};
+        color: #fff;
       }
     }
   }
@@ -42,7 +43,7 @@ export const Main = styled.main`
 
 export const Recipes = styled.section`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 50px;
   margin-top: 100px;
 
@@ -55,12 +56,6 @@ export const Recipes = styled.section`
       object-fit: cover;
       box-shadow: 3px 3px 10px #e2e2e2;
       margin-bottom: 25px;
-    }
-
-    span {
-      font-weight: 300;
-      color: #39008f;
-      font-size: 14px;
     }
 
     h2 {
@@ -81,8 +76,22 @@ export const Recipes = styled.section`
     }
 
     a {
+      background-color: transparent;
+      text-transform: uppercase;
+      border: 2px solid #39008f;
+      border-radius: 25px;
+      padding: 8px 24px;
       font-size: 12px;
-      padding: 10px 30px;
+      line-height: 15px;
+      color: #39008f;
+      font-weight: 500;
+      transition: all 0.2s;
+      text-decoration: none;
+
+      &:hover {
+        background-color: ${shade(0.08, '#39008f')};
+        color: #fff;
+      }
     }
   }
 `;

@@ -58,7 +58,7 @@ const AddRecipe: React.FC = () => {
           key.includes('ingredient'),
         );
 
-        const ingredients = ingredientsKeys.map(key => data[key]).join();
+        const ingredients = ingredientsKeys.map(key => data[key]).join('/');
 
         const recipeData = new FormData();
 

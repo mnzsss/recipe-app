@@ -19,13 +19,26 @@ body {
  background: #FFFEFD;
  color: #AAAAAA;
  -webkit-font-smoothing: antialiased;
+}
 
+img{
+  user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+	cursor: default;
+
+  &::after, &::before {
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-app-region: no-drag;
+    cursor: default;
+  }
 }
 
 body, input, button {
  font-size: 14px;
  line-height: 22px;
- font-family: 'Roboto', sans-serif;
+ font-family: 'Inter', sans-serif;
 }
 
 h1, h2,h3{
@@ -45,7 +58,7 @@ button {
     border-radius: 25px;
     padding: 15px 40px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     transition: all 0.2s;
     text-decoration: none;
 

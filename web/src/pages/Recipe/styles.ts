@@ -24,14 +24,32 @@ export const Container = styled.div`
 
 export const RecipeContent = styled.div`
   display: flex;
-  align-items: center;
 
   img {
     height: 400px;
+    width: 100%;
     max-width: 600px;
     object-fit: cover;
     margin-right: 40px;
     box-shadow: 3px 3px 10px #e2e2e2;
+  }
+
+  .ingredients {
+    margin: 30px 0;
+
+    div {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+
+      input[type='checkbox'] {
+        margin-right: 20px;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+    }
   }
 
   div {
@@ -45,10 +63,6 @@ export const RecipeContent = styled.div`
       font-weight: 300;
       color: #39008f;
       font-size: 14px;
-    }
-
-    p {
-      margin-bottom: 20px;
     }
   }
 

@@ -39,30 +39,55 @@ const Recipe: React.FC = () => {
         <FiChevronLeft size={14} color="#ea687e" />
         back
       </Link>
-      <RecipeContent>
-        <img src={recipe.image_url} alt={recipe.title} />
 
-        <div>
-          <span>{recipe.difficulty}</span>
+      {recipe ? (
+        <RecipeContent>
+          {recipe.image_url ? (
+            <img src={recipe.image_url} alt={recipe.title} />
+          ) : (
+            <img
+              src="https://via.placeholder.com/1200/f5f5f5/ea687e/?text=Loading"
+              alt="Loading"
+            />
+          )}
 
-          <h1>{recipe.title}</h1>
+          <div>
+            <span>{recipe.difficulty}</span>
 
-          <p>{recipe.description}</p>
-          <div className="footer">
-            <button
-              type="button"
-              onClick={() => {
-                setIsLiked(!isLiked);
-              }}
-            >
-              {(isLiked && <AiFillHeart size={20} />) || (
-                <AiOutlineHeart size={20} />
-              )}
-              You like ?
-            </button>
+            <h1>{recipe.title}</h1>
+
+            <p>{recipe.description}</p>
+
+            <div className="ingredients">
+              <span>Ingredients</span>
+              {recipe.ingredients?.map(ingredient => (
+                <div key={ingredient}>
+                  <input type="checkbox" />
+                  <p>{ingredient}</p>
+                </div>
+              ))}
+            </div>
+
+            <p>{recipe.prepare_mode}</p>
+
+            <div className="footer">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsLiked(!isLiked);
+                }}
+              >
+                {(isLiked && <AiFillHeart size={20} />) || (
+                  <AiOutlineHeart size={20} />
+                )}
+                You like ?
+              </button>
+            </div>
           </div>
-        </div>
-      </RecipeContent>
+        </RecipeContent>
+      ) : (
+        <p>Loading...</p>
+      )}
 
       <Footer />
     </Container>

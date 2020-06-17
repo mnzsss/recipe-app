@@ -4,7 +4,7 @@ import Truncate from 'react-truncate';
 
 import api from '../../services/api';
 
-import foodIllustration from '../../assets/food-illustration.svg';
+import foodIllustration from '../../assets/header-image.png';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -40,11 +40,7 @@ const Dashboard: React.FC = () => {
 
       <Main>
         <div>
-          <h1>
-            <span>Biggest list of the</span>
-            <br />
-            Best Recipes
-          </h1>
+          <h1>Biggest list of the best Recipes</h1>
 
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -72,9 +68,7 @@ const Dashboard: React.FC = () => {
               <Truncate lines={4}>{recipe.description}</Truncate>
             </p>
 
-            <Link to={`/recipe/${recipe.id}`} className="button">
-              show more
-            </Link>
+            <Link to={`/recipe/${recipe.id}`}>show more</Link>
           </div>
         ))}
       </Recipes>
