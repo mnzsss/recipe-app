@@ -9,7 +9,10 @@
 <br>
 
 <p align= "center">
-  <img alt="FoodCourt" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="FoodCourt" src="https://img.shields.io/badge/version-1.0-blue.svg?style=for-the-badge&logo=appveyor" />
+   <img src="https://img.shields.io/github/forks/mnzsss/recipe-app?style=for-the-badge&logo=appveyor" />
+   <img src="https://img.shields.io/github/stars/mnzsss/recipe-app?style=for-the-badge&logo=appveyor" />
+   <img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fmnzsss%2Frecipe-app?style=for-the-badge&logo=appveyor" />
 </p>
 
 <p align="center">
@@ -19,25 +22,19 @@ The objective of the Recipe app is to help the user manage recipes in a way
 ## Demo
 
 <p align="center">
-  <img alt="Demo" src="./images/demo.gif" />
+   <img alt="Demo" src="./images/dashboard.png" />
 </p>
 
 <table>
  <tr>
  <td >
-    <img alt="Demo" src="./images/dashboard.jpg" />
+    <img alt="Demo" src="./images/recipe.png" />
  </td>
  <td >
-    <img alt="Demo" src="./images/recipe-list.jpg" />
- </td>
- </tr>
-
-  <tr>
- <td >
-    <img alt="Demo" src="./images/recipe.jpg" />
+    <img alt="Demo" src="./images/add-recipe.png" />
  </td>
  <td >
-    <img alt="Demo" src="./images/add-recipe.jpg" />
+    <img alt="Demo" src="./images/liked-recipes.png" />
  </td>
  </tr>
 </table>
@@ -47,20 +44,39 @@ The objective of the Recipe app is to help the user manage recipes in a way
 ### Install
 
 ```sh
+# Setup Server
+cd ../server
+
+# Copy and rename .env.example to .env
+# Add your MONGO_URL to .env (you get url on MongoDB Atlas)
+
+# Install dependecies
+yarn
+
+# Setup Web
+cd ../web
+
+# Install dependecies
 yarn
 ```
 
 ### Usage
 
-Create a docker container MongoDB on port **27017**.
 
 ```sh
-cd server
+# Clone Project
+git clone https://github.com/mnzsss/recipe-app.git
 
-yarn dev
+# Setup run Server
+cd ../server
 
+# Run Server
+yarn dev:server
+
+# Setup run Web
 cd ../web
 
+# Run Web Application
 yarn start
 ```
 
