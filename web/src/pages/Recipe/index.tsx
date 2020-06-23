@@ -80,7 +80,7 @@ const Recipe: React.FC = () => {
           )}
 
           <div>
-            <span>{recipe.difficulty}</span>
+            {/* <span>{recipe.difficulty}</span> */}
 
             <h1>{recipe.title}</h1>
 
@@ -88,12 +88,13 @@ const Recipe: React.FC = () => {
 
             <div className="ingredients">
               <span>Ingredients</span>
-              {recipe.ingredients?.map(ingredient => (
-                <div key={ingredient}>
-                  <input type="checkbox" />
-                  <p>{ingredient}</p>
-                </div>
-              ))}
+              <ul>
+                {recipe.ingredients?.map(ingredient => (
+                  <li key={ingredient}>
+                    <p>{ingredient}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <p>{recipe.prepare_mode}</p>

@@ -37,17 +37,16 @@ export const RecipeContent = styled.div`
   .ingredients {
     margin: 30px 0;
 
-    div {
-      display: flex;
-      align-items: center;
-      margin: 10px 0;
+    span {
+      font-weight: bold;
+    }
 
-      input[type='checkbox'] {
-        margin-right: 20px;
-      }
+    ul {
+      margin: 10px 0 10px 30px;
 
       p {
         margin-bottom: 0;
+        color: #444;
       }
     }
   }

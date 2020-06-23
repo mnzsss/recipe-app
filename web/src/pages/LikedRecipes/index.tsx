@@ -34,7 +34,7 @@ const LikedRecipes: React.FC = () => {
       <Header />
 
       <Main>
-        <h1>You liked recipes.</h1>
+        <h1>Your liked recipes.</h1>
       </Main>
 
       <Recipes id="recipes">
