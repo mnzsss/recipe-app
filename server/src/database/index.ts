@@ -1,6 +1,5 @@
-import dotenv from 'dotenv';
-
 import { connect } from 'mongoose';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 
