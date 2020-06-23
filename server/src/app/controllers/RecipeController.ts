@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { Request, Response } from 'express';
+import aws from 'aws-sdk';
 
 import path from 'path';
 
@@ -17,7 +18,10 @@ class RecipeController {
         description: recipe.description,
         ingredients: recipe.ingredients,
         prepare_mode: recipe.prepare_mode,
-        image_url: `${process.env.APP_URL}files/${recipe.image}`,
+        image_url:
+          process.env.STORAGE_TYPE === 'local'
+            ? `${process.env.APP_URL}files/${recipe.image}`
+            : `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${recipe.image}`,
       };
     });
 
@@ -40,7 +44,10 @@ class RecipeController {
       description: recipe.description,
       ingredients: recipe.ingredients,
       prepare_mode: recipe.prepare_mode,
-      image_url: `${process.env.APP_URL}files/${recipe.image}`,
+      image_url:
+        process.env.STORAGE_TYPE === 'local'
+          ? `${process.env.APP_URL}files/${recipe.image}`
+          : `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${recipe.image}`,
     };
 
     return res.json(serializedRecipe);
@@ -111,9 +118,31 @@ class RecipeController {
     await recipe.update(data);
 
     if (req.file !== undefined) {
-      const uploadFolder = path.resolve(__dirname, '..', '..', '..', 'uploads');
+      switch (process.env.STORAGE_TYPE) {
+        case 'local': {
+          const uploadFolder = path.resolve(
+            __dirname,
+            '..',
+            '..',
+            '..',
+            'uploads',
+          );
 
-      await fs.promises.unlink(`${uploadFolder}/${recipe.image}`);
+          await fs.promises.unlink(`${uploadFolder}/${recipe.image}`);
+
+          break;
+        }
+        default: {
+          await new aws.S3({
+            region: process.env.AWS_DEFAULT_REGION || 'us-east-1',
+          })
+            .deleteObject({
+              Bucket: process.env.AWS_BUCKET_NAME || '',
+              Key: recipe.image,
+            })
+            .promise();
+        }
+      }
 
       await Recipe.update(
         { _id: id },
@@ -137,9 +166,31 @@ class RecipeController {
       return res.status(400).json({ error: 'Recipe not found.' });
     }
 
-    const uploadFolder = path.resolve(__dirname, '..', '..', '..', 'uploads');
+    switch (process.env.STORAGE_TYPE) {
+      case 'local': {
+        const uploadFolder = path.resolve(
+          __dirname,
+          '..',
+          '..',
+          '..',
+          'uploads',
+        );
 
-    fs.promises.unlink(`${uploadFolder}/${recipe.image}`);
+        fs.promises.unlink(`${uploadFolder}/${recipe.image}`);
+
+        break;
+      }
+      default: {
+        await new aws.S3({
+          region: process.env.AWS_DEFAULT_REGION || 'us-east-1',
+        })
+          .deleteObject({
+            Bucket: process.env.AWS_BUCKET_NAME || '',
+            Key: recipe.image,
+          })
+          .promise();
+      }
+    }
 
     await Recipe.deleteOne({ _id: recipe.id });
 

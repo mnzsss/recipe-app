@@ -20,7 +20,7 @@ const storage = {
   }),
   s3: multerS3({
     s3: new aws.S3({}),
-    bucket: 'recipe-app',
+    bucket: process.env.AWS_BUCKET_NAME || '',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: 'public-read',
     key: (req, file, cb) => {
