@@ -134,11 +134,7 @@ const AddRecipe: React.FC = () => {
           <h2>Add a beatiful image</h2>
 
           <Upload onUpload={handleUpload} />
-          {!!uploadedFiles.length && <span>Arquivo Enviado com Sucesso</span>}
-
-          {!uploadedFiles.length && (
-            <span className="error">Arquivo Ainda não foi Enviado.</span>
-          )}
+          {!!uploadedFiles.length && <span>File upload as success.</span>}
         </ImportFileContainer>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
