@@ -27,6 +27,7 @@ export const Recipes = styled.section`
   margin-top: 100px;
 
   div {
+    position: relative;
     max-width: 380px;
 
     img {
@@ -84,5 +85,34 @@ export const NoContent = styled.div`
 
   span {
     margin-top: 20px;
+  }
+`;
+
+export const Remove = styled.button`
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: #39008f;
+
+  span {
+    color: #fff;
+    font-size: 0;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    span {
+      font-size: 14px;
+    }
+
+    svg {
+      margin-left: 10px;
+    }
   }
 `;
