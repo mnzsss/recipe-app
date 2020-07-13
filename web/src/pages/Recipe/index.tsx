@@ -43,21 +43,34 @@ const Recipe: React.FC = () => {
     loadData();
   }, [params.recipe]);
 
-  const handleLikeRecipe = useCallback(() => {
-    setIsLiked(old => !old);
+  const handleLikeRecipe = useCallback(
+    (id: string) => {
+      setIsLiked(old => !old);
 
-    let rcps = [];
+      let rcps: RecipeProps[] = [];
 
-    const storagedRecipes = localStorage.getItem('@FoodCourt:Liked');
+      const storagedRecipes = localStorage.getItem('@FoodCourt:Liked');
 
-    if (storagedRecipes) {
-      rcps = JSON.parse(storagedRecipes);
-    }
+      if (storagedRecipes) {
+        rcps = JSON.parse(storagedRecipes);
+      }
 
-    rcps.push(recipe);
+      const recipeExists = rcps.find(rcp => rcp.id === id);
 
-    localStorage.setItem('@FoodCourt:Liked', JSON.stringify(rcps));
-  }, [recipe]);
+      if (!recipeExists) {
+        rcps.push(recipe);
+
+        localStorage.setItem('@FoodCourt:Liked', JSON.stringify(rcps));
+
+        return;
+      }
+
+      rcps = rcps.filter(rcp => rcp.id !== id);
+
+      localStorage.setItem('@FoodCourt:Liked', JSON.stringify(rcps));
+    },
+    [recipe],
+  );
 
   return (
     <Container>
@@ -80,8 +93,6 @@ const Recipe: React.FC = () => {
           )}
 
           <div>
-            {/* <span>{recipe.difficulty}</span> */}
-
             <h1>{recipe.title}</h1>
 
             <p>{recipe.description}</p>
@@ -100,7 +111,7 @@ const Recipe: React.FC = () => {
             <p>{recipe.prepare_mode}</p>
 
             <div className="footer">
-              <button type="button" onClick={handleLikeRecipe}>
+              <button type="button" onClick={() => handleLikeRecipe(recipe.id)}>
                 {(isLiked && <AiFillHeart size={20} />) || (
                   <AiOutlineHeart size={20} />
                 )}

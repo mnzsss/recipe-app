@@ -74,3 +74,15 @@ export const Recipes = styled.section`
     }
   }
 `;
+
+export const NoContent = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-top: 20px;
+  }
+`;
