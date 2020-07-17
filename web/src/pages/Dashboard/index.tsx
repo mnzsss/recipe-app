@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import api from '../../services/api';
 
@@ -56,21 +57,41 @@ const Dashboard: React.FC = () => {
         <img src={foodIllustration} alt="Food Illustration" />
       </Main>
 
-      <Recipes id="recipes">
-        {recipes.map(recipe => (
-          <div key={recipe.id}>
-            <img src={recipe.image_url} alt={recipe.title} />
+      {recipes.length > 0 ? (
+        <Recipes id="recipes">
+          {recipes.map(recipe => (
+            <div key={recipe.id}>
+              <img src={recipe.image_url} alt={recipe.title} />
 
-            <h2>{recipe.title}</h2>
+              <h2>{recipe.title}</h2>
 
-            <p>
-              <Truncate lines={4}>{recipe.description}</Truncate>
-            </p>
+              <p>
+                <Truncate lines={4}>{recipe.description}</Truncate>
+              </p>
 
-            <Link to={`/recipe/${recipe.id}`}>show more</Link>
+              <Link to={`/recipe/${recipe.id}`}>show more</Link>
+            </div>
+          ))}
+        </Recipes>
+      ) : (
+        <Recipes id="recipes">
+          <div>
+            <Skeleton height={250} animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton height={50} animation="wave" />
           </div>
-        ))}
-      </Recipes>
+          <div>
+            <Skeleton height={250} animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton height={50} animation="wave" />
+          </div>
+          <div>
+            <Skeleton height={250} animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton height={50} animation="wave" />
+          </div>
+        </Recipes>
+      )}
 
       <Footer />
     </Container>

@@ -45,7 +45,7 @@ export const Recipes = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
-  margin-top: 100px;
+  margin-top: 80px;
 
   div {
     max-width: 380px;
