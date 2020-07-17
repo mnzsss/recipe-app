@@ -27,7 +27,6 @@ export const DropContainer = styled.div.attrs({
   align-items: center;
   justify-content: center;
   padding: 48px;
-  max-width: 500px;
 
   transition: height 0.2s ease;
 

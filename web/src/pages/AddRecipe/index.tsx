@@ -16,7 +16,7 @@ import Footer from '../../components/Footer';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 
-import { Container, Content, ImportFileContainer } from './styles';
+import { Container, Content, ImportFileContainer, BackButton } from './styles';
 
 interface FileProps {
   file: File;
@@ -128,6 +128,8 @@ const AddRecipe: React.FC = () => {
   return (
     <Container>
       <Header />
+
+      <BackButton onClick={() => history.goBack()}>Cancelar Receita</BackButton>
 
       <Content>
         <ImportFileContainer>

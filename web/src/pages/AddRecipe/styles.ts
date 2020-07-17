@@ -7,10 +7,9 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  margin-top: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: block;
+  max-width: 960px;
+  margin: 50px auto 0;
 
   h2 {
     margin-bottom: 20px;
@@ -18,10 +17,11 @@ export const Content = styled.div`
 
   form {
     width: 100%;
-    max-width: 600px;
+    margin-top: 100px;
 
-    button {
+    > button {
       margin-top: 30px;
+      float: right;
     }
 
     h3 {
@@ -108,7 +108,6 @@ export const ImportFileContainer = styled.section`
   width: 100%;
   height: 450px;
   border-radius: 5px;
-  padding-right: 50px;
 
   span {
     color: #12a454;
@@ -117,5 +116,21 @@ export const ImportFileContainer = styled.section`
   }
   span.error {
     color: #e83f5b;
+  }
+`;
+
+export const BackButton = styled.button`
+  background: transparent;
+  display: block;
+  padding: 5px 20px;
+  margin-top: 30px;
+  border: 0;
+  color: #aaaaaa;
+  font-weight: bold;
+  width: 100%;
+  transition: color 0.4s;
+
+  &:hover {
+    color: #39008f;
   }
 `;
