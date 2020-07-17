@@ -26,7 +26,7 @@ export const DropContainer = styled.div.attrs({
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px;
+  padding: 20px;
 
   transition: height 0.2s ease;
 
@@ -46,8 +46,9 @@ export const DropContainer = styled.div.attrs({
     width: 100%;
 
     img {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     span {
