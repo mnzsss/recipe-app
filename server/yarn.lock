@@ -121,10 +121,10 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
-"@types/multer-s3@2.7.7":
-  version "2.7.7"
-  resolved "https://registry.yarnpkg.com/@types/multer-s3/-/multer-s3-2.7.7.tgz#36acad009726377b2b85116a0fe2d37cd569cb45"
-  integrity sha512-WvVVtgEbbTnZNNKLtsyKXzRxaRCNXxqCRdsqyBjMGLrNWTl1Yu5ETVW1x7wVQu7jGXLBigiqNi8qZJn/cgT9Dg==
+"@types/multer-s3@2.7.10":
+  version "2.7.10"
+  resolved "https://registry.yarnpkg.com/@types/multer-s3/-/multer-s3-2.7.10.tgz#b2a8d3161d7a847a582fefc8a8e3abc2abc167f8"
+  integrity sha512-sGUpFsSuVYQFtDo1BRjgocUDcSqBaRU/eY3cuZ4pAKD33YCiI9s80A9Vvs57X7I+ysimgy6ZkFWwyksvNNRUFA==
   dependencies:
     "@types/multer" "*"
     aws-sdk "^2.37.0"
