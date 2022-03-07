@@ -52,7 +52,7 @@
   "devDependencies": {
     "@types/dotenv": "8.2.0",
     "@types/react-beautiful-dnd": "13.0.0",
-    "@types/react-router-dom": "5.1.5",
+    "@types/react-router-dom": "5.3.3",
     "@types/react-truncate": "2.3.3",
     "@types/styled-components": "5.1.0",
     "@types/yup": "0.28.0",
