@@ -62,7 +62,7 @@
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-import-resolver-typescript": "2.0.0",
-    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.19.0",
